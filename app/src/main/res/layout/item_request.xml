@@ -1,0 +1,182 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    android:backgroundTint="@color/white">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- Header block with owner + car -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:background="@color/light_blue_600">
+
+            <TextView
+                android:id="@+id/tvOwnerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="John Doe"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tvCarMake"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Toyota Corolla 2015"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- Request details -->
+        <TextView
+            android:id="@+id/tvRequestType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Request Type: Roadside"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvDiagnostics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OBD-II: P0300 Random Misfire"
+            android:textSize="14sp"
+            android:textColor="@color/red"
+            android:layout_marginTop="6dp"/>
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Requested: 21 Aug 2025, 7:30 PM"
+            android:textSize="12sp"
+            android:textColor="@color/gray"
+            android:layout_marginTop="6dp"/>
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location: Kenyatta Ave, Nairobi"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="6dp"/>
+
+        <!-- Status badge -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:text="Pending"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:background="@drawable/status_pending_bg"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Buttons -->
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            android:paddingTop="8dp"
+            android:gravity="center">
+
+            <!-- Row 1: Accept + Reject -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="12dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAccept"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Accept"
+                    android:textAllCaps="false"
+                    android:textSize="11sp"
+                    android:textColor="@color/white"
+                    app:cornerRadius="12dp"
+                    app:backgroundTint="@color/light_blue_600" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnReject"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Reject"
+                    android:textAllCaps="false"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/red"
+                    app:cornerRadius="12dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    app:strokeColor="@color/red" />
+            </LinearLayout>
+
+            <!-- Row 2: Track + OBD -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTrack"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Track"
+                    android:textAllCaps="false"
+                    android:textSize="12sp"
+                    app:icon="@android:drawable/ic_menu_mylocation"
+                    app:iconTint="@color/black"
+                    app:iconGravity="start"
+                    android:textColor="@color/black"
+                    app:backgroundTint="@color/yellow"
+                    app:cornerRadius="12dp"
+                    style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOBD"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="View OBD"
+                    android:textAllCaps="false"
+                    android:textSize="12sp"
+                    app:icon="@android:drawable/ic_menu_mylocation"
+                    app:iconTint="@color/black"
+                    app:iconGravity="start"
+                    android:textColor="@color/black"
+                    app:backgroundTint="@color/blue"
+                    app:cornerRadius="12dp"
+                    style="@style/Widget.MaterialComponents.Button.TextButton" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.nearestmechaniclocator"
+    tools:ignore="MissingVersion">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Nearest Mechanic Locator"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR">
+        <activity
+            android:name=".NearbyPlacesTabsActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
+            android:name=".MechanicBookingActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
+            android:name=".AutoSparesShopsActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
+            android:name=".PetrolStationsActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
+            android:name=".SpareShopsActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
+            android:name=".MotelBookingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_motel_booking"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR.Fullscreen" />
+        <activity
+            android:name=".RoleSelectionActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
+            android:name=".DriverDashboardActivity"
+            android:exported="false"
+            android:label="@string/title_activity_driver_dashboard" />
+        <activity
+            android:name=".MechanicDetailsActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
+            android:name=".RequestsFragment"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".RatingsFragment"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
+            android:name=".ChatsFragment"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".WorkshopLocationActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
+            android:name=".ServiceHistoryFragment"
+            android:exported="false"
+            android:label="@string/title_activity_service_history"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR.NoActionBar"
+            tools:ignore="Instantiatable" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MechanicDashboardActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

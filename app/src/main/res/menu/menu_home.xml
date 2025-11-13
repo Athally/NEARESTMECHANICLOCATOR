@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_share_obd"
+        android:title="@string/share_obd_data"
+        android:icon="@android:drawable/ic_menu_send" />
+
+    <item
+        android:id="@+id/action_upload_credentials"
+        android:title="@string/upload_credentials"
+        android:icon="@android:drawable/ic_menu_upload" />
+
+    <item
+        android:id="@+id/action_open_drawer"
+        android:title="@string/open_settings_panel"
+        android:icon="@android:drawable/ic_menu_manage" />
+</menu>

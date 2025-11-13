@@ -1,0 +1,21 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base gradient background -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#E0F7FA"
+                android:endColor="@color/light_blue_600"
+                android:angle="270"/>
+        </shape>
+    </item>
+
+    <!-- Subtle chat-like pattern (optional diagonal lines) -->
+    <item>
+        <bitmap
+            android:src="@drawable/chat_pattern"
+            android:tileMode="repeat"
+            android:gravity="fill"/>
+    </item>
+
+</layer-list>

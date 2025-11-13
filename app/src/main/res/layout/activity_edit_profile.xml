@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@color/light_silver"
+        android:id="@+id/image"
+        android:contentDescription="@string/todo" />
+
+    <EditText
+        android:id="@+id/edit_name"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="name"
+        android:hint="@string/full_name"
+        android:textColor="@color/white"
+        android:inputType="textPersonName"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/edit_email"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="emailAddress"
+        android:textColor="@color/white"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp" />
+    <EditText
+        android:id="@+id/editTextIdNumber"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="idNumber"
+        android:inputType="text|number"
+        android:textColor="@color/white"
+        android:hint="@string/id_number"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/edit_phone"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:autofillHints="number"
+        android:textColor="@color/black"
+        android:hint="@string/phone_number"
+        android:inputType="phone"
+        android:minHeight="48dp" />
+
+    <Button
+        android:backgroundTint="@color/orange"
+        android:id="@+id/btn_save_profile"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/save__info"
+        android:textColor="@color/black" />
+</LinearLayout>

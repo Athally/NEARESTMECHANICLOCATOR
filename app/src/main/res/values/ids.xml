@@ -1,0 +1,30 @@
+<resources>
+    <item name="bottomNavigationView" type="id" />
+    <item name="recyclerViewIncomingRequests" type="id" />
+    <item name="acceptButton" type="id" />
+    <item name="rejectButton" type="id" />
+    <item name="action_logout" type="id" />
+    <item name="action_diagnostics" type="id" />
+    <item name="callButton" type="id"/>
+    <item name="btn_get_started" type="id" />
+    <item name="btn_login" type="id" />
+    <item name="mechanic_distance" type="id">mechanic_distance</item>
+    <item name="edit_name" type="id" />
+    <item name="btn_save_profile" type="id" />
+    <item name="edit_phone" type="id" />
+    <item name="mapFragment" type="id">map</item>
+    <item name="btnDriver" type="id">btn_driver</item>
+    <item name="btnMechanic" type="id">btn_mechanic</item>
+    <item name="tvServiceDate" type="id" />
+    <item name="tvServiceStatus" type="id" />
+    <item name="tvDate" type="id" />
+    <item name="tvIssue" type="id" />
+    <item name="splashTitle" type="id">MechaFind</item>
+    <item name="lottieSplash" type="id">splash</item>
+    <item name="tvStationName" type="id">Station_name</item>
+    <item name="tvStationAddress" type="id">Station_Address</item>
+    <item name="tvStationDistance" type="id">Station_distance</item>
+    <item name="ivStationIcon" type="id">Station_Icon</item>
+    <item name="stationCard" type="id">Station_Card</item>
+    <item name="bottom_navigation" type="id">bottom_navigation"</item>
+</resources>

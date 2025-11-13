@@ -1,0 +1,52 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.NEARESTMECHANICLOCATOR" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">#FF5722</item> <!-- Deep Orange -->
+        <item name="colorPrimaryVariant">#D84315</item> <!-- Dark Orange -->
+        <item name="colorOnPrimary">#FFFFFF</item> <!-- White -->
+
+        <!-- Secondary colors -->
+        <item name="colorSecondary">#009688</item> <!-- Teal -->
+        <item name="colorSecondaryVariant">#00796B</item> <!-- Dark Teal -->
+        <item name="colorOnSecondary">#FFFFFF</item> <!-- White -->
+
+        <!-- Background and surface colors -->
+        <item name="android:colorBackground">#EEEEEE</item> <!-- Light Gray -->
+        <item name="colorSurface">#FFFFFF</item> <!-- White -->
+        <item name="colorOnSurface">#212121</item> <!-- Dark Gray -->
+
+        <!-- Accent color -->
+        <item name="colorAccent">#FFC107</item> <!-- Amber -->
+
+        <!-- Material button style -->
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button</item>
+    </style>
+
+    <style name="Base.Theme.NEARESTMECHANICLOCATOR.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Base.Theme.NEARESTMECHANICLOCATOR.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Base.Theme.NEARESTMECHANICLOCATOR.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!-- Base application theme. -->
+    <style name="Base.Base.Theme.NEARESTMECHANICLOCATOR" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Base.Theme.NEARESTMECHANICLOCATOR.Fullscreen" parent="Base.Theme.NEARESTMECHANICLOCATOR">
+        <item name="android:actionBarStyle">
+            @style/Widget.Base.Theme.NEARESTMECHANICLOCATOR.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.NEARESTMECHANICLOCATOR.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
+</resources>

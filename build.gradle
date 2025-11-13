@@ -1,0 +1,22 @@
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.7.3'
+        classpath libs.google.services
+    }
+}
+
+allprojects {
+    repositories {
+
+    }
+}
+
+
+tasks.register('clean', Delete) {
+    delete layout.buildDirectory
+}

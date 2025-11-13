@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "268263458417",
+    "firebase_url": "https://nearest-mechanic-locator-default-rtdb.firebaseio.com",
+    "project_id": "nearest-mechanic-locator",
+    "storage_bucket": "nearest-mechanic-locator.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268263458417:android:56f4724907874256a63dd0",
+        "android_client_info": {
+          "package_name": "com.example.nearestmechaniclocator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYABJf0Qf2yzBF6m5jpDkfbQrvUpgjr5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268263458417:android:ef85c89b640a1609a63dd0",
+        "android_client_info": {
+          "package_name": "com.example.nearestmechaniclocator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYABJf0Qf2yzBF6m5jpDkfbQrvUpgjr5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

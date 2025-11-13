@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/mechanicName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mechanic Name"
+        android:textColor="#A1887F"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/driverName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Driver Name"
+        android:textColor="#1976D2"
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/vehicleProblem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Problem: Battery issue"
+        android:textColor="#607D8B"
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/workshopLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Workshop Location"
+        android:textColor="#607D8B"
+        android:textSize="19sp" />
+
+    <TextView
+        android:id="@+id/timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="12 Jul 2025, 10:24 AM"
+        android:textColor="#E91E63"
+        android:textStyle="italic"
+        android:textSize="18sp" />
+
+</LinearLayout>

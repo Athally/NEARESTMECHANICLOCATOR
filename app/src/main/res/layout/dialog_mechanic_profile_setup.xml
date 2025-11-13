@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutMechanicProfile"
+    android:background="@color/electric_blue"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:contentDescription="@string/image"
+        android:src="@drawable/ic_person"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:background="@drawable/circle_background"
+        android:padding="8dp" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:autofillHints="name"
+        android:hint="@string/Name"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="#C5E1A5"
+        android:textSize="18sp" />
+
+
+    <EditText
+        android:id="@+id/editTextIdNumber"
+        android:layout_width="380dp"
+        android:layout_height="48dp"
+        android:hint="@string/id_number"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:textColorHint="#C5E1A5"
+        android:textSize="18sp" />
+
+    <Spinner
+
+        android:id="@+id/spinnerSpecialization"
+        android:textColor="@color/black"
+        android:textColorHint="#C5E1A5"
+        android:textSize="18sp"
+        android:layout_width="380dp"
+        android:layout_height="48dp" />
+
+    <Button
+        android:id="@+id/buttonUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save_profile"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<gradient xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="ExtraText">
+    android:startColor="#FF5722"  <!-- Orange -->
+    android:centerColor="#FFEB3B" <!-- Yellow -->
+    android:endColor="#4CAF50"    <!-- Green -->
+    android:angle="45"
+/>

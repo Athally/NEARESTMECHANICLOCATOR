@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+<!-- start state: cards are transparent & shifted down -->
+<ConstraintSet android:id="@+id/start">
+    <Constraint android:id="@+id/card1">
+        <PropertySet android:alpha="0"/>
+        <Transform android:translationY="30dp"/>
+    </Constraint>
+    <Constraint android:id="@+id/card2">
+        <PropertySet android:alpha="0"/>
+        <Transform android:translationY="30dp"/>
+    </Constraint>
+    <Constraint android:id="@+id/card3">
+        <PropertySet android:alpha="0"/>
+        <Transform android:translationY="30dp"/>
+    </Constraint>
+</ConstraintSet>
+
+<!-- end state: cards fully visible & in place -->
+<ConstraintSet android:id="@+id/end">
+    <Constraint android:id="@+id/card1">
+        <PropertySet android:alpha="1"/>
+        <Transform android:translationY="0dp"/>
+    </Constraint>
+    <Constraint android:id="@+id/card2">
+        <PropertySet android:alpha="1"/>
+        <Transform android:translationY="0dp"/>
+    </Constraint>
+    <Constraint android:id="@+id/card3">
+        <PropertySet android:alpha="1"/>
+        <Transform android:translationY="0dp"/>
+    </Constraint>
+</ConstraintSet>
+
+<Transition
+    motion:constraintSetStart="@id/start"
+    motion:constraintSetEnd="@id/end"
+    motion:duration="400">
+    <!-- stagger each card by 100ms -->
+    <KeyFrameSet>
+        <KeyAttribute
+            motion:motionTarget="@+id/card1"
+            motion:framePosition="0"
+            android:alpha="0"/>
+        <KeyAttribute
+            motion:motionTarget="@+id/card2"
+            motion:framePosition="100"
+            android:alpha="0"/>
+        <KeyAttribute
+            motion:motionTarget="@+id/card3"
+            motion:framePosition="200"
+            android:alpha="0"/>
+    </KeyFrameSet>
+</Transition>
+</MotionScene>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottomsheet_dark"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/mechanicImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:contentDescription="TODO"
+        android:scaleType="centerCrop"
+        android:background="@drawable/image_shadow"
+        android:layout_marginBottom="12dp" />
+
+    <TextView
+        android:id="@+id/mechanicName"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:text="@string/Name"
+        android:layout_width="280dp"
+        android:layout_height="48dp" />
+    <TextView
+        android:id="@+id/statusBadge"
+        android:text="Status"
+        android:textSize="18sp"
+        android:layout_marginTop="6dp"
+        android:textColor="#FFFFFF"
+        android:layout_width="280dp"
+        android:layout_height="48dp"/>
+
+
+    <TextView
+        android:id="@+id/specialization"
+        android:textColor="@color/white"
+        android:layout_marginTop="4dp"
+        android:textSize="18sp"
+        android:text="@string/specialization"
+        android:layout_width="280dp"
+        android:layout_height="48dp" />
+
+    <TextView
+        android:id="@+id/rating"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:text="@string/rating"
+        android:layout_width="280dp"
+        android:layout_height="48dp" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:text="@string/distance"
+        android:layout_width="280dp"
+        android:layout_height="48dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/callButton"
+            android:text="📞 Call Mechanic"
+            android:backgroundTint="#03DAC5"
+            android:textColor="#000000"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/requestButton"
+            android:text="@string/request_services"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#FFBB33"
+            android:textColor="#000000"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/locationButton"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#2196F3"
+            android:text="@string/view_location"
+            android:textColor="#212121" />
+
+        <Button
+            android:id="@+id/trackButton"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#8BC34A"
+            android:text="🚗 Track Mechanic"
+            android:textColor="#37474F" />
+    </LinearLayout>
+</LinearLayout>

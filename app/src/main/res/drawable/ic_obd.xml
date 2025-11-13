@@ -1,0 +1,23 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24"
+    android:tint="?attr/colorControlNormal">
+
+    <!-- OBD-II Rectangle Base -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M3,7h18v8h-18z" />
+
+    <!-- Connector Pins -->
+    <path
+        android:fillColor="@android:color/black"
+        android:pathData="M5,9h2v2h-2zM9,9h2v2h-2zM13,9h2v2h-2zM17,9h2v2h-2z" />
+
+    <!-- Bottom Extension -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M7,15h10v2h-10z" />
+
+</vector>

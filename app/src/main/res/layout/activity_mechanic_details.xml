@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mechanicDetailsScroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@android:color/white"
+    tools:context=".MechanicDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Mechanic Image -->
+        <ImageView
+            android:id="@+id/imageMechanic"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_user_placeholder"
+            android:scaleType="centerCrop"
+            android:background="@drawable/circle_background"
+            android:contentDescription="@string/mechanic_image" />
+
+        <!-- Mechanic Name -->
+        <TextView
+            android:id="@+id/textMechanicName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/jane_doe"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <!-- Specialization -->
+        <TextView
+            android:id="@+id/textMechanicSpecialization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/brake_specialist"
+            android:textSize="18sp"
+            android:textColor="@color/steel_gray"/>
+        <!-- Location -->
+        <TextView
+            android:id="@+id/textMechanicLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/workshop_kisumu_cbd"
+            android:textColor="#757575"
+            android:textSize="18sp" />
+
+        <!-- Rating -->
+        <TextView
+            android:id="@+id/textMechanicRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/_4_5"
+            android:textColor="#827717"
+            android:textSize="14sp" />
+
+        <!-- Chat Button -->
+        <Button
+            android:id="@+id/btnChat"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/electric_blue"
+            android:drawableStart="@drawable/ic_chat"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/chat_with_mechanic"
+            android:textColor="#000000" />
+
+        <!-- Request Service Button -->
+        <Button
+            android:id="@+id/btnRequestService"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/_services"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            android:drawableStart="@drawable/ic_tools"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+    </LinearLayout>
+</ScrollView>

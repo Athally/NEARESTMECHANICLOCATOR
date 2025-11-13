@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_find_mechanic"
+        android:title="@string/find__mechanic"
+        android:icon="@drawable/ic_mechanic" />
+
+    <item
+        android:id="@+id/nav_petrol_stations"
+        android:title="@string/petrol_stations"
+        android:icon="@drawable/ic_petrol" />
+
+    <item
+        android:id="@+id/nav_auto_spares"
+        android:title="@string/auto_spares_shops"
+        android:icon="@drawable/ic_spares" />
+    <item
+        android:id="@+id/nav_obd_diagnostics"
+        android:title="OBD-II Diagnostics"
+        android:icon="@drawable/ic_obd" />
+
+
+    <item
+        android:id="@+id/nav_motels"
+        android:title="@string/motels"
+        android:icon="@drawable/ic_motel" />
+
+</menu>

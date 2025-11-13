@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/realTimeMapFragment">
+
+    <fragment
+        android:id="@+id/realTimeMapFragment"
+        android:name="com.example.nearestmechaniclocator.realTimeMapFragment"
+        android:label="Live Map"
+        tools:layout="@layout/fragment_real_time_map" />
+
+    <fragment
+        android:id="@+id/mechanicsListFragment"
+        android:name="com.example.nearestmechaniclocator.MechanicListFragment"
+        android:label="Mechanics"
+        tools:layout="@layout/fragment_mechanic_list" />
+
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.example.nearestmechaniclocator.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/NotificationFragment"
+        android:name="NotificationFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notification" />
+
+    <fragment
+        android:id="@+id/ServiceHistoryFragment"
+        android:name="ServiceHistoryFragment"
+        android:label="Service History"
+        tools:layout="@layout/fragment_service_history" />
+
+</navigation>
