@@ -1,137 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#FFFFFF"
     android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:dividerPadding="12dp"
-        android:showDividers="middle">
+        android:gravity="center_horizontal">
 
-        <!-- Motel -->
+        <!-- Section Title -->
+        <TextView
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:id="@+id/titleServices"
+            android:text="Driver Services"
+            android:textSize="22sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center"/>
+
+        <!-- Card: Nearby Motels -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardMotel"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="@color/purple"
-            app:cardElevation="8dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            card_view:cardCornerRadius="16dp"
+            card_view:cardElevation="6dp"
+            card_view:cardBackgroundColor="#EDE7F6">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Book Motel"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="@android:color/white"/>
+                android:padding="20dp"
+                android:text="🏨 Nearby Motels"
+                android:textColor="#4A148C"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
         </androidx.cardview.widget.CardView>
 
-        <!-- Auto Spares -->
+        <!-- Card: Auto Spares -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardSpares"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="@color/teal"
-            app:cardElevation="8dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            card_view:cardCornerRadius="16dp"
+            card_view:cardElevation="6dp"
+            card_view:cardBackgroundColor="#FFF8E1">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Find Auto Spares"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="@android:color/white"/>
+                android:padding="20dp"
+                android:text="🧰 Auto Spares"
+                android:textColor="#FF6F00"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
         </androidx.cardview.widget.CardView>
 
-        <!-- Petrol Stations -->
+        <!-- Card: Petrol Stations -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardPetrol"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="@color/blue"
-            app:cardElevation="8dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            card_view:cardCornerRadius="16dp"
+            card_view:cardElevation="6dp"
+            card_view:cardBackgroundColor="#EDE7F6">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Find Petrol Stations"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="@android:color/white"/>
+                android:padding="20dp"
+                android:text="⛽ Petrol Stations"
+                android:textColor="#4A148C"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
         </androidx.cardview.widget.CardView>
 
-        <!-- Book Mechanic -->
+        <!-- Card: Book Mechanic -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardMechanic"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="@color/green"
-            app:cardElevation="8dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            card_view:cardCornerRadius="16dp"
+            card_view:cardElevation="6dp"
+            card_view:cardBackgroundColor="#FFF8E1">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Book Mechanic"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="@android:color/white"/>
+                android:padding="20dp"
+                android:text="🔧 Book Mechanic"
+                android:textColor="#FF6F00"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
         </androidx.cardview.widget.CardView>
 
-        <!-- OBD2 -->
+        <!-- Card: OBD Diagnostics -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardOBD"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="@color/red"
-            app:cardElevation="8dp">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:clickable="true"
+            card_view:cardCornerRadius="16dp"
+            card_view:cardElevation="6dp"
+            card_view:cardBackgroundColor="#EDE7F6">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="OBD2 Data"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="@android:color/white"/>
+                android:padding="20dp"
+                android:text="🚗 OBD Diagnostics"
+                android:textColor="#4A148C"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
         </androidx.cardview.widget.CardView>
 
-        <!-- Chat with Mechanic -->
+        <!-- Card: Chat -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardChat"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="@color/orange"
-            app:cardElevation="8dp">
+            android:clickable="true"
+            card_view:cardCornerRadius="16dp"
+            card_view:cardElevation="6dp"
+            card_view:cardBackgroundColor="#FFF8E1">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chat with Mechanic"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="@android:color/white"/>
+                android:padding="20dp"
+                android:text="💬 Chat with Mechanic"
+                android:textColor="#FF6F00"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>

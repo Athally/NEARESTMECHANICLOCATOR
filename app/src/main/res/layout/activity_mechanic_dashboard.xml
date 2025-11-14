@@ -1,59 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mechanic_dashboard_layout"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient_dashboard"
-    tools:context=".MechanicDashboardActivity">
+    android:layout_height="match_parent">
 
-    <!-- Welcome Text with Gradient & Shadow -->
-    <TextView
-        android:id="@+id/welcomeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome: Mechanic Dashboard"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:shadowColor="#AA000000"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="4" />
-
-    <!-- Top Toolbar -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/mechanicToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_marginTop="56dp" /><!-- shifted below welcome text -->
-
-
-    <!-- Fragment Container -->
-    <FrameLayout
-        android:id="@+id/mechanic_fragment_container"
-        android:layout_width="match_parent"
+    <!-- Sidebar Menu -->
+    <LinearLayout
+        android:id="@+id/sidebar_menu"
+        android:orientation="vertical"
+        android:background="@color/purple"
+        android:layout_width="120dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:layout_marginBottom="65dp"
-        android:background="@color/colorSurface"
-        android:elevation="2dp"
-        android:clipToOutline="true" />
+        android:paddingTop="24dp"
+        android:gravity="top|center_horizontal">
 
-    <!-- Bottom Navigation -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/mechanicBottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/bg_bottom_nav"
-        app:labelVisibilityMode="labeled"
-        app:itemIconTint="@color/nav_item_selector"
-        app:itemTextColor="@color/nav_item_selector"
-        app:itemIconSize="32dp"
-        app:menu="@menu/mechanic_menu"
-        tools:ignore="VisualLintBottomNav" />
+        <!-- Home -->
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:src="@drawable/ic_home"
+            android:background="@drawable/circle_white_bg"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="32dp"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <!-- Requests -->
+        <ImageButton
+            android:id="@+id/btnRequests"
+            android:src="@drawable/ic_requests"
+            android:background="@drawable/circle_white_bg"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Requests"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Notifications -->
+        <ImageButton
+            android:id="@+id/btnNotifications"
+            android:src="@drawable/ic_notifications"
+            android:background="@drawable/circle_white_bg"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            android:padding="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notifications"
+            android:textSize="16sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Settings -->
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:src="@drawable/ic_settings"
+            android:background="@drawable/circle_white_bg"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="8dp"
+            android:padding="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Main Content Area -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mechanic Dashboard"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Fragment Container -->
+        <FrameLayout
+            android:id="@+id/mechanic_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</LinearLayout>

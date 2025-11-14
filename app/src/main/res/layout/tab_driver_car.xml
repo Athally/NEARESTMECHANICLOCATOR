@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/carImageView"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_car"
+            android:contentDescription="Car Image"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/editCarMake"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Car Make"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editCarModel"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Car Model"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editCarYear"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Car Year"
+            android:inputType="number"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editCarColor"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Car Color"
+            android:layout_marginBottom="16dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveCar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Save Car Info"
+            android:backgroundTint="@color/teal"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+</ScrollView>

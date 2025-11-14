@@ -1,63 +1,46 @@
 package com.example.nearestmechaniclocator;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 public class MechanicDashboardActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavigationView;
-    private static final int RATING_REQUEST_CODE = 1001;
     private TextView welcomeText;
+    private ImageButton btnHome, btnRequests, btnNotifications, btnSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mechanic_dashboard);
 
-        bottomNavigationView = findViewById(R.id.mechanicBottomNav);
+        // Initialize views
         welcomeText = findViewById(R.id.welcomeText);
 
-        // Apply premium gold gradient to welcome text
+        btnHome = findViewById(R.id.btnHome);
+        btnRequests = findViewById(R.id.btnRequests);
+        btnNotifications = findViewById(R.id.btnNotifications);
+        btnSettings = findViewById(R.id.btnSettings);
+
+        // Apply gold gradient to welcome text
         applyGradientToWelcomeText();
 
         // Load default fragment
         if (savedInstanceState == null) {
             loadFragment(new MechanicHomeFragment());
-            bottomNavigationView.setSelectedItemId(R.id.nav_home);
         }
 
-        // Handle bottom navigation clicks using if-else if
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            Fragment fragment = null;
-            int id = item.getItemId();
-
-            if (id == R.id.nav_home) {
-                fragment = new MechanicHomeFragment();
-            } else if (id == R.id.nav_requests) {
-                fragment = new RequestsFragment();
-            } else if (id == R.id.nav_notifications) {
-                fragment = new NotificationFragment();
-            } else if (id == R.id.nav_settings) {
-                fragment = new MechanicSettingsFragment();
-            }
-
-            if (fragment != null) {
-                loadFragment(fragment);
-                return true;
-            }
-
-            return false;
-        });
+        // Sidebar click listeners
+        btnHome.setOnClickListener(v -> loadFragment(new MechanicHomeFragment()));
+        btnRequests.setOnClickListener(v -> loadFragment(new RequestsFragment()));
+        btnNotifications.setOnClickListener(v -> loadFragment(new NotificationFragment()));
+        btnSettings.setOnClickListener(v -> loadFragment(new MechanicSettingsFragment()));
     }
 
     // Swap fragments into container
@@ -81,23 +64,5 @@ public class MechanicDashboardActivity extends AppCompatActivity {
                 Shader.TileMode.CLAMP
         );
         welcomeText.getPaint().setShader(textShader);
-    }
-
-    @SuppressLint("MissingSuperCall")
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, RatingsFragment.class);
-        startActivityForResult(intent, RATING_REQUEST_CODE);
-    }
-
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RATING_REQUEST_CODE) {
-            finishAffinity();
-        }
     }
 }

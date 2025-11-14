@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@drawable/bg_bottomsheet_dark"
     android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:ignore="ExtraText">
 
     <ImageView
         android:id="@+id/mechanicImage"
@@ -24,6 +26,7 @@
         android:text="@string/Name"
         android:layout_width="280dp"
         android:layout_height="48dp" />
+
     <TextView
         android:id="@+id/statusBadge"
         android:text="Status"
@@ -33,10 +36,9 @@
         android:layout_width="280dp"
         android:layout_height="48dp"/>
 
-
     <TextView
         android:id="@+id/specialization"
-        android:textColor="@color/white"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="4dp"
         android:textSize="18sp"
         android:text="@string/specialization"
@@ -46,14 +48,14 @@
     <TextView
         android:id="@+id/rating"
         android:textColor="@color/white"
-        android:textSize="18sp"
-        android:text="@string/rating"
-        android:layout_width="280dp"
-        android:layout_height="48dp" />
+    android:textSize="18sp"
+    android:text="@string/rating"
+    android:layout_width="280dp"
+    android:layout_height="48dp" />
 
     <TextView
         android:id="@+id/distance"
-        android:textColor="@color/white"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:text="@string/distance"
         android:layout_width="280dp"
@@ -66,38 +68,39 @@
         android:layout_height="wrap_content">
 
         <Button
+
             android:id="@+id/callButton"
             android:text="📞 Call Mechanic"
-            android:backgroundTint="#03DAC5"
-            android:textColor="#000000"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content" />
+            android:backgroundTint="#6A1B9A"
+        android:textColor="#FFFFFF"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/requestButton"
             android:text="@string/request_services"
             android:layout_marginTop="8dp"
-            android:backgroundTint="#FFBB33"
-            android:textColor="#000000"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content" />
+            android:backgroundTint="@color/white"
+        android:textColor="#000000"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/locationButton"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="#2196F3"
-            android:text="@string/view_location"
-            android:textColor="#212121" />
+            android:backgroundTint="#6A1B9A"
+        android:text="@string/view_location"
+        android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/trackButton"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:backgroundTint="#8BC34A"
-            android:text="🚗 Track Mechanic"
-            android:textColor="#37474F" />
+            android:backgroundTint="#FFFFFF"
+        android:text="🚗 Track Mechanic"
+        android:textColor="#000000" />
     </LinearLayout>
 </LinearLayout>

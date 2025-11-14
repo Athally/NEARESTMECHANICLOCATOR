@@ -35,6 +35,10 @@
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR">
         <activity
+            android:name=".AuthActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />
+        <activity
             android:name=".NearbyPlacesTabsActivity"
             android:exported="false"
             android:theme="@style/Base.Theme.NEARESTMECHANICLOCATOR" />

@@ -39,7 +39,7 @@ public class NearbyPlacesTabsActivity extends AppCompatActivity {
     }
 
     private void loadMapFragment(String placeType) {
-        currentFragment = NearbyMapFragment.newInstance(placeType);
+        currentFragment = PlacesMapFragment.newInstance(placeType);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.map_container, currentFragment)
                 .commit();

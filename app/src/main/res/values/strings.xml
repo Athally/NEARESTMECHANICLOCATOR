@@ -478,6 +478,14 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="save_availability">Save Availability</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="mechanic_settings">Mechanic Settings</string>
+    <string name="share_live_location">Share Live Location</string>
+    <string name="auto_accept_requests">Auto-accept Requests</string>
+    <string name="availability_hours">Availability Hours</string>
+    <string name="end_time">End Time</string>
+    <string name="start_time">Start Time</string>
 
 
 </resources>

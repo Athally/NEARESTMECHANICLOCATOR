@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mechanicDetailsScroll"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="@android:color/white"
-    tools:context=".MechanicDetailsActivity">
+    android:background="@color/white"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,82 +12,116 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Mechanic Image -->
+        <!-- Mechanic Photo -->
         <ImageView
             android:id="@+id/imageMechanic"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_user_placeholder"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
-            android:background="@drawable/circle_background"
-            android:contentDescription="@string/mechanic_image" />
+            android:src="@drawable/ic_person"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/circle_background" />
 
         <!-- Mechanic Name -->
         <TextView
             android:id="@+id/textMechanicName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/jane_doe"
+            android:text="Mechanic Name"
             android:textSize="20sp"
+            android:textColor="@color/purple"
             android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:layout_marginBottom="8dp" />
 
         <!-- Specialization -->
         <TextView
             android:id="@+id/textMechanicSpecialization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/brake_specialist"
-            android:textSize="18sp"
-            android:textColor="@color/steel_gray"/>
-        <!-- Location -->
-        <TextView
-            android:id="@+id/textMechanicLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/workshop_kisumu_cbd"
-            android:textColor="#757575"
-            android:textSize="18sp" />
+            android:text="Engine Specialist"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp" />
 
         <!-- Rating -->
         <TextView
             android:id="@+id/textMechanicRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/_4_5"
-            android:textColor="#827717"
-            android:textSize="14sp" />
+            android:text="⭐ 4.5"
+            android:textSize="16sp"
+            android:textColor="@color/amber"
+            android:layout_marginBottom="4dp" />
 
-        <!-- Chat Button -->
-        <Button
-            android:id="@+id/btnChat"
-            android:layout_width="270dp"
+        <!-- Location -->
+        <TextView
+            android:id="@+id/textMechanicLocation"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:backgroundTint="@color/electric_blue"
-            android:drawableStart="@drawable/ic_chat"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="@string/chat_with_mechanic"
-            android:textColor="#000000" />
+            android:text="Workshop: Nairobi"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Booking Options Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            android:background="@color/cardview_dark_background"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Booking Type"
+                    android:textSize="16sp"
+                    android:textColor="@color/purple"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <RadioGroup
+                    android:id="@+id/radioBookingOptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/radioRoadside"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Roadside Service"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/radioSchedule"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Scheduled Service"
+                        android:textColor="@color/black" />
+                </RadioGroup>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <!-- Request Service Button -->
         <Button
             android:id="@+id/btnRequestService"
-            android:layout_width="270dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/_services"
-            android:backgroundTint="@color/blue"
+            android:text="Request Service"
+            android:backgroundTint="@color/purple"
             android:textColor="@color/white"
-            android:drawableStart="@drawable/ic_tools"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp" />
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp"
+            android:cornerRadius="12dp" />
 
     </LinearLayout>
 </ScrollView>

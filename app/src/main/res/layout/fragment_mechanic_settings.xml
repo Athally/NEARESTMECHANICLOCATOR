@@ -1,208 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/light_blue_600"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/white">
+    android:padding="16dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:spacing="12dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Profile Section (Optional) -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="16dp"
+            android:cardBackgroundColor="#FFCC80">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mechanic_settings"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#4A148C"
+                    android:layout_marginBottom="12dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <!-- Preferences Section -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Preferences"
+            android:text="@string/preferences"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="#6A1B9A"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="16dp"
+            android:cardBackgroundColor="#B39DDB">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <!-- Auto-accept Switch -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/auto_accept_requests"
+                        android:textSize="16sp"
+                        android:textColor="#4A148C"/>
+
+                    <Switch
+                        android:id="@+id/availabilitySwitch"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:thumbTint="#FF4081"
+                        android:trackTint="#F8BBD0"/>
+                </LinearLayout>
+
+                <!-- Live Location Switch -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/share_live_location"
+                        android:textSize="16sp"
+                        android:textColor="#4A148C"/>
+
+                    <Switch
+                        android:id="@+id/liveLocationSwitch"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:thumbTint="#1E88E5"
+                        android:trackTint="#81D4FA"/>
+                </LinearLayout>
+
+                <!-- Dark Theme Switch -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dark_theme"
+                        android:textSize="16sp"
+                        android:textColor="#4A148C"/>
+
+                    <Switch
+                        android:id="@+id/themeSwitch"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:thumbTint="#FDD835"
+                        android:trackTint="#FFF59D"/>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Availability Times Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/availability_hours"
+            android:textColor="#004D40"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginStart="4dp"
             android:layout_marginBottom="8dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="12dp"
-            android:background="@drawable/card_bg_blue"
-            android:gravity="start">
+            android:layout_marginBottom="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dark Mode"
-                android:textSize="16sp"
-                android:textColor="@android:color/white" />
+            <EditText
+                android:id="@+id/startTimeEditText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:hint="@string/start_time"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"
+                android:padding="12dp"
+                android:drawableStart="@drawable/ic_clock"
+                android:drawablePadding="8dp"
+                android:background="@drawable/edittext_bg_vibrant"
+                android:textColor="#4A148C"
+                android:textSize="14sp"
+                android:layout_marginEnd="8dp"/>
 
-            <Switch
-                android:id="@+id/switchDarkMode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/endTimeEditText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:hint="@string/end_time"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"
+                android:padding="12dp"
+                android:drawableStart="@drawable/ic_clock"
+                android:drawablePadding="8dp"
+                android:background="@drawable/edittext_bg_vibrant"
+                android:textColor="#4A148C"
+                android:textSize="14sp"/>
         </LinearLayout>
 
-        <LinearLayout
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/saveAvailabilityButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:background="@drawable/card_bg_green"
-            android:gravity="space_between">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Enable Notifications"
-                android:textSize="16sp"
-                android:textColor="@android:color/white" />
-
-            <Switch
-                android:id="@+id/switchNotifications"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-        <Spinner
-            android:id="@+id/spinnerLanguage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/spinner_bg"/>
-
-        <!-- Account Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Account"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="8dp"/>
-
-        <LinearLayout
-            android:id="@+id/btnChangePassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/card_bg_orange">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Change Password"
-                android:textSize="16sp"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnUpdateEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/card_bg_purple"
-            android:layout_marginTop="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Update Email"
-                android:textSize="16sp"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnUpdatePhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/card_bg_green"
-            android:layout_marginTop="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Update Phone"
-                android:textSize="16sp"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-        <!-- Support Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Support"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="8dp"/>
-
-        <LinearLayout
-            android:id="@+id/btnContactSupport"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/card_bg_blue">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Contact Support"
-                android:textSize="16sp"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnFAQ"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/card_bg_orange"
-            android:layout_marginTop="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="FAQ"
-                android:textSize="16sp"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-        <!-- System Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="System"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="8dp"/>
-
-        <LinearLayout
-            android:id="@+id/btnAboutApp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/card_bg_purple">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="About App"
-                android:textSize="16sp"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/card_bg_red"
-            android:layout_marginTop="8dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Logout"
-                android:textSize="16sp"
-                android:textColor="@android:color/white"/>
-        </LinearLayout>
-
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/save_availability"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:backgroundTint="#FF7043"/>
     </LinearLayout>
 </ScrollView>

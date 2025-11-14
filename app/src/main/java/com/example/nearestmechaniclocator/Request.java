@@ -1,7 +1,8 @@
 package com.example.nearestmechaniclocator;
 
 public class Request {
-    private String id;           // <- store the Firebase key
+    private String id;           // Firebase key
+    private String ownerId;      // driver UID
     private String ownerName;
     private String carMake;
     private String requestType;  // "Booking" | "Roadside"
@@ -12,9 +13,10 @@ public class Request {
 
     public Request() {}
 
-    public Request(String id, String ownerName, String carMake, String requestType, String issue,
-                   long timestamp, Location location, String status) {
+    public Request(String id, String ownerId, String ownerName, String carMake, String requestType,
+                   String issue, long timestamp, Location location, String status) {
         this.id = id;
+        this.ownerId = ownerId;
         this.ownerName = ownerName;
         this.carMake = carMake;
         this.requestType = requestType;
@@ -24,36 +26,41 @@ public class Request {
         this.status = status;
     }
 
-    // getters & setters
+    // Getters & setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
 
+    public String getOwnerId() { return ownerId; }
+    public void setOwnerId(String ownerId) { this.ownerId = ownerId; }
+
     public String getOwnerName() { return ownerName; }
+    public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
+
     public String getCarMake() { return carMake; }
+    public void setCarMake(String carMake) { this.carMake = carMake; }
+
     public String getRequestType() { return requestType; }
+    public void setRequestType(String requestType) { this.requestType = requestType; }
+
     public String getIssue() { return issue; }
+    public void setIssue(String issue) { this.issue = issue; }
+
     public long getTimestamp() { return timestamp; }
+    public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
+
     public Location getLocation() { return location; }
+    public void setLocation(Location location) { this.location = location; }
+
     public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public void setOwnerName(String v){ this.ownerName=v; }
-    public void setCarMake(String v){ this.carMake=v; }
-    public void setRequestType(String v){ this.requestType=v; }
-    public void setIssue(String v){ this.issue=v; }
-    public void setTimestamp(long v){ this.timestamp=v; }
-    public void setLocation(Location v){ this.location=v; }
-    public void setStatus(String v){ this.status=v; }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
+    // Nested Location class
     public static class Location {
         private double lat;
         private double lng;
         private String address;
 
-        public Location(){}
+        public Location() {}
 
         public Location(double lat, double lng, String address) {
             this.lat = lat;
@@ -62,11 +69,12 @@ public class Request {
         }
 
         public double getLat() { return lat; }
-        public double getLng() { return lng; }
-        public String getAddress() { return address; }
+        public void setLat(double lat) { this.lat = lat; }
 
-        public void setLat(double v){ this.lat=v; }
-        public void setLng(double v){ this.lng=v; }
-        public void setAddress(String v){ this.address=v; }
+        public double getLng() { return lng; }
+        public void setLng(double lng) { this.lng = lng; }
+
+        public String getAddress() { return address; }
+        public void setAddress(String address) { this.address = address; }
     }
 }

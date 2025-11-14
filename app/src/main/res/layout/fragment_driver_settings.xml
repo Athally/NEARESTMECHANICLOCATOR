@@ -85,7 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="space_between"
+                    android:gravity="center"
                     android:paddingVertical="8dp">
 
                     <TextView
@@ -101,14 +101,14 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:thumbTint="@color/electric_blue"
-                        android:trackTint="@color/light_blue_300"/>
+                        android:trackTint="@color/blue"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="space_between"
+                    android:gravity="center"
                     android:paddingVertical="8dp">
 
                     <TextView
@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="space_between"
+                    android:gravity="center"
                     android:paddingVertical="8dp">
 
                     <TextView

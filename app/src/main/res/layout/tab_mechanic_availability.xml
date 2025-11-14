@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Available for work?"
+                android:textSize="16sp"/>
+
+            <Switch
+                android:id="@+id/switchAvailability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editArea"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Area Located"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/editHours"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Available Hours"
+            android:layout_marginBottom="16dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveAvailability"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Save Availability"
+            android:backgroundTint="@color/purple"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+</ScrollView>

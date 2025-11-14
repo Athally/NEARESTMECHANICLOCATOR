@@ -11,11 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TimePicker;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,8 +26,11 @@ import java.util.Locale;
 import java.util.Map;
 
 public class MechanicSettingsFragment extends Fragment {
+    private Switch availabilitySwitch;
+    private Switch liveLocationSwitch;
+    private Switch themeSwitch;
 
-    private SwitchCompat availabilitySwitch, liveLocationSwitch, themeSwitch;
+
     private EditText startTimeEditText, endTimeEditText;
     private Button saveAvailabilityButton;
 

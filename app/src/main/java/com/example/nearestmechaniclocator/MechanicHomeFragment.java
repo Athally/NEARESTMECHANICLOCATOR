@@ -46,18 +46,19 @@ public class MechanicHomeFragment extends Fragment {
         // Navigation
         cardRequests.setOnClickListener(v -> openFragment(new RequestsFragment()));
         cardEarnings.setOnClickListener(v -> openFragment(new EarningsFragment()));
-        cardRatings.setOnClickListener(v -> openFragment(new RatingsFragment()));
         cardEditProfile.setOnClickListener(v -> openFragment(new EditProfileFragment()));
         cardChangePassword.setOnClickListener(v -> openFragment(new ChangePasswordFragment()));
 
         return view;
     }
 
-    private void openFragment(Fragment fragment) {
+    private void openFragment(Fragment fragment) {  // Change parameter type to Fragment
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.mechanic_fragment_container, fragment)
+                .replace(R.id.mechanic_fragment_container, fragment) // now works for any Fragment
                 .addToBackStack(null)
                 .commit();
     }
+
 }
+

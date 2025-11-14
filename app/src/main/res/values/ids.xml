@@ -27,4 +27,5 @@
     <item name="ivStationIcon" type="id">Station_Icon</item>
     <item name="stationCard" type="id">Station_Card</item>
     <item name="bottom_navigation" type="id">bottom_navigation"</item>
+    <item name="tabLayoutProfile" type="id" />
 </resources>

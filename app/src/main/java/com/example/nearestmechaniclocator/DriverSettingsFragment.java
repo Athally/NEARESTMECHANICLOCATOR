@@ -62,7 +62,7 @@ public class DriverSettingsFragment extends Fragment {
     private void performLogout() {
         // Clear shared preferences or session
         // FirebaseAuth.getInstance().signOut(); // If using Firebase
-        Intent intent = new Intent(requireContext(), LoginActivity.class);
+        Intent intent = new Intent(requireContext(), AuthActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }

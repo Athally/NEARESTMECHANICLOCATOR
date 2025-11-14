@@ -1,44 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mechanic_dashboard_layout"
-    android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sidebar_menu"
+    android:orientation="vertical"
+    android:background="@color/purple"
+    android:layout_width="120dp"
     android:layout_height="match_parent"
-    android:background="@color/light_blue_600">
+    android:paddingTop="24dp"
+    android:gravity="top|center_horizontal">
 
-    <!-- Top Toolbar -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/driverToolbar"
-        android:layout_width="match_parent"
+    <!-- Home -->
+    <ImageButton
+        android:id="@+id/btnHome"
+        android:src="@drawable/ic_home"
+        android:background="@drawable/circle_white_bg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        android:padding="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="@string/driver_dashboard"
-        android:textColor="@color/black"
+        android:text="Home"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
         android:textStyle="bold"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:titleCentered="true" />
+        android:layout_marginBottom="32dp"/>
 
-    <!-- Fragment Container -->
-    <FrameLayout
-        android:id="@+id/driver_fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:layout_marginBottom="60dp" />
-
-    <!-- Bottom Navigation -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/driverBottomNav"
-        android:layout_width="match_parent"
+    <!-- Services -->
+    <ImageButton
+        android:id="@+id/btnServiceHistory"
+        android:src="@drawable/ic_services"
+        android:background="@drawable/circle_white_bg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        android:padding="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/white"
-        app:labelVisibilityMode="labeled"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/blue"
-        app:menu="@menu/driver_bottom_nav_menu"
-        tools:ignore="VisualLintBottomNav" />
+        android:text="Services"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!-- History -->
+    <ImageButton
+        android:id="@+id/btnHistory"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/circle_white_bg"
+        android:contentDescription="@string/Credentials"
+        android:padding="20dp"
+        android:src="@drawable/ic_history" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Settings -->
+    <ImageButton
+        android:id="@+id/btnSettings"
+        android:src="@drawable/ic_settings"
+        android:background="@drawable/circle_white_bg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        android:padding="20dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"/>
+</LinearLayout>
+
+
+
+</LinearLayout>

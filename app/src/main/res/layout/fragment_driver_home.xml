@@ -1,207 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mechanicHomeScroll"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@color/white"
-    android:padding="24dp">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:padding="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <!-- Profile Section -->
+        <!-- Welcome Message -->
         <TextView
-            android:id="@+id/textMechanicName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="John Doe"
+            android:id="@+id/welcomeText"
+            android:text="Welcome back!"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="4dp" />
-
-        <TextView
-            android:id="@+id/textMechanicSpecialization"
+            android:textColor="@color/purple"
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Engine Specialist"
-            android:textSize="16sp"
-            android:textColor="@color/gray"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="24dp"/>
 
-        <TextView
-            android:id="@+id/textMechanicRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="⭐ 4.8"
-            android:textSize="16sp"
-            android:textColor="@color/amber"
-            android:layout_marginBottom="24dp" />
-
-        <!-- Quick Action Cards -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardRequests"
+        <!-- Quick Action: Find Mechanics -->
+        <LinearLayout
+            android:id="@+id/cardFindMechanics"
+            android:orientation="horizontal"
+            android:background="@color/amber"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:elevation="4dp">
+
+            <ImageView
+                android:src="@drawable/ic_mechanic"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/white"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:text="Find Nearby Mechanics"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <!-- Quick Action: Service History -->
+        <LinearLayout
+            android:id="@+id/cardServiceHistory"
+            android:orientation="horizontal"
+            android:background="@color/light_blue_600"
+            android:padding="16dp"
             android:layout_marginBottom="16dp"
-            android:elevation="4dp"
-            android:clickable="true"
-            android:foreground="@color/white"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_requests"
-                    android:contentDescription="Requests Icon"
-                    android:layout_marginEnd="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Requests"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardEarnings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:elevation="4dp"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="16dp">
+            android:gravity="center_vertical"
+            android:elevation="4dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+            <ImageView
+                android:src="@drawable/ic_history"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:backgroundTint="@color/white"
+                android:layout_marginEnd="16dp"/>
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_money"
-                    android:contentDescription="Earnings Icon"
-                    android:layout_marginEnd="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Earnings"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardRatings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:elevation="4dp"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_ratings"
-                    android:contentDescription="Ratings Icon"
-                    android:layout_marginEnd="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ratings"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardEditProfile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:elevation="4dp"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:backgroundTint="@color/gray"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_profile"
-                    android:contentDescription="Edit Profile Icon"
-                    android:layout_marginEnd="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Edit Profile"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardChangePassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:elevation="4dp"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_password"
-                    android:contentDescription="Change Password Icon"
-                    android:layout_marginEnd="16dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Change Password"
-                    android:textSize="18sp"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            <TextView
+                android:text="View Service History"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

@@ -1,10 +1,7 @@
 package com.example.nearestmechaniclocator;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,215 +9,431 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.*;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.*;
 
 public class EditProfileFragment extends Fragment {
 
     private static final int PICK_IMAGE_REQUEST = 101;
 
-    private ImageView profileImageView;
-    private EditText editName, editLocation;
-    private Spinner spinnerSpecialization;
-    private MaterialButton btnSave, btnGetLocation;
+    private TabLayout tabLayout;
+    private ViewPager2 viewPager;
 
-    private Uri selectedImageUri;
+    private String role;
+
     private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth auth;
     private StorageReference storageRef;
-    private FusedLocationProviderClient fusedLocationClient;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
 
+        tabLayout = view.findViewById(R.id.tabLayoutProfile);
+        viewPager = view.findViewById(R.id.viewPagerProfile);
+
         db = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
-        storageRef = FirebaseStorage.getInstance().getReference("mechanic_profiles");
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext());
+        auth = FirebaseAuth.getInstance();
+        storageRef = FirebaseStorage.getInstance().getReference();
 
-        profileImageView = view.findViewById(R.id.profileImageView);
-        editName = view.findViewById(R.id.editMechanicName);
-        editLocation = view.findViewById(R.id.editMechanicLocation);
-        spinnerSpecialization = view.findViewById(R.id.spinnerSpecialization);
-        btnSave = view.findViewById(R.id.btnSaveProfile);
-        btnGetLocation = view.findViewById(R.id.btnGetLocation);
-
-        // Spinner setup
-        String[] specializations = {"General Repair", "Tires & Wheels", "Engine", "Brakes", "AC & Heating", "Electrical"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
-                android.R.layout.simple_spinner_dropdown_item, specializations);
-        spinnerSpecialization.setAdapter(adapter);
-
-        // Load current profile
-        loadMechanicProfile();
-
-        // Profile image picker
-        profileImageView.setOnClickListener(v -> openImagePicker());
-
-        // Save profile
-        btnSave.setOnClickListener(v -> saveProfile());
-
-        // Get location
-        btnGetLocation.setOnClickListener(v -> fetchCurrentLocation());
+        fetchUserRole();
 
         return view;
     }
 
-    private void loadMechanicProfile() {
-        String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-
-        db.collection("mechanics").document(uid)
+    private void fetchUserRole() {
+        String uid = auth.getCurrentUser().getUid();
+        db.collection("users").document(uid)
                 .get()
                 .addOnSuccessListener(doc -> {
                     if (doc.exists()) {
-                        editName.setText(doc.getString("name"));
-                        editLocation.setText(doc.getString("location"));
-
-                        String specialization = doc.getString("specialization");
-                        if (specialization != null) {
-                            int pos = ((ArrayAdapter) spinnerSpecialization.getAdapter())
-                                    .getPosition(specialization);
-                            spinnerSpecialization.setSelection(pos);
-                        }
-
-                        String profileUrl = doc.getString("profileImage");
-                        if (profileUrl != null && !profileUrl.isEmpty()) {
-                            Glide.with(this)
-                                    .load(profileUrl)
-                                    .placeholder(R.drawable.ic_person_edit)
-                                    .circleCrop()
-                                    .into(profileImageView);
-                        }
+                        role = doc.getString("role"); // "driver" or "mechanic"
+                        setupTabs();
                     }
                 });
     }
 
-    private void openImagePicker() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    private void setupTabs() {
+        List<Fragment> fragments = new ArrayList<>();
+        List<String> titles = new ArrayList<>();
+
+        // Common personal info tab
+        fragments.add(new TabFragmentPersonalInfo());
+        titles.add("Personal Info");
+
+        if ("driver".equals(role)) {
+            fragments.add(new TabFragmentDriverCar());
+            titles.add("Car Info");
+        } else if ("mechanic".equals(role)) {
+            fragments.add(new TabFragmentMechanicCredentials());
+            titles.add("Credentials");
+            fragments.add(new TabFragmentMechanicAvailability());
+            titles.add("Availability");
+        }
+
+        ProfilePagerAdapter adapter = new ProfilePagerAdapter(this, fragments);
+        viewPager.setAdapter(adapter);
+
+        new TabLayoutMediator(tabLayout, viewPager,
+                (tab, position) -> tab.setText(titles.get(position))
+        ).attach();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    private static class ProfilePagerAdapter extends androidx.viewpager2.adapter.FragmentStateAdapter {
+        private final List<Fragment> fragmentList;
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
-            Uri uri = data.getData();
-            if (uri != null) {
-                try {
-                    // Check size
-                    if (!isImageSizeValid(uri)) {
-                        // Compress if larger than 2MB
-                        uri = compressImage(uri);
-                    }
-                    selectedImageUri = uri;
-                    Glide.with(this).load(selectedImageUri).circleCrop().into(profileImageView);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(), "Failed to process image", Toast.LENGTH_SHORT).show();
-                }
+        public ProfilePagerAdapter(@NonNull Fragment fragment, List<Fragment> fragments) {
+            super(fragment);
+            this.fragmentList = fragments;
+        }
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getItemCount() {
+            return fragmentList.size();
+        }
+    }
+
+    // ------------------------ PERSONAL INFO TAB ------------------------
+    public static class TabFragmentPersonalInfo extends Fragment {
+        private ImageView profileImageView;
+        private EditText editName;
+        private MaterialButton btnSave;
+        private Uri selectedImageUri;
+
+        private FirebaseAuth auth;
+        private FirebaseFirestore db;
+        private StorageReference storageRef;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater,
+                                 @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+
+            View view = inflater.inflate(R.layout.tab_personal_info, container, false);
+
+            profileImageView = view.findViewById(R.id.profileImageView);
+            editName = view.findViewById(R.id.editName);
+            btnSave = view.findViewById(R.id.btnSaveProfile);
+
+            auth = FirebaseAuth.getInstance();
+            db = FirebaseFirestore.getInstance();
+            storageRef = FirebaseStorage.getInstance().getReference("profiles");
+
+            loadProfile();
+
+            profileImageView.setOnClickListener(v -> openImagePicker());
+            btnSave.setOnClickListener(v -> saveProfile());
+
+            return view;
+        }
+
+        private void loadProfile() {
+            String uid = auth.getCurrentUser().getUid();
+            db.collection("users").document(uid)
+                    .get()
+                    .addOnSuccessListener(doc -> {
+                        if (doc.exists()) {
+                            editName.setText(doc.getString("name"));
+                            String url = doc.getString("profileImage");
+                            if (url != null) Glide.with(this).load(url).circleCrop().into(profileImageView);
+                        }
+                    });
+        }
+
+        private void openImagePicker() {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        }
+
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
+                selectedImageUri = data.getData();
+                Glide.with(this).load(selectedImageUri).circleCrop().into(profileImageView);
+            }
+        }
+
+        private void saveProfile() {
+            String uid = auth.getCurrentUser().getUid();
+            String name = editName.getText().toString().trim();
+            if (name.isEmpty()) {
+                Toast.makeText(getContext(), "Enter your name", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("name", name);
+
+            if (selectedImageUri != null) {
+                StorageReference fileRef = storageRef.child(uid + ".jpg");
+                fileRef.putFile(selectedImageUri)
+                        .addOnSuccessListener(task -> fileRef.getDownloadUrl()
+                                .addOnSuccessListener(uri -> {
+                                    updates.put("profileImage", uri.toString());
+                                    db.collection("users").document(uid).update(updates);
+                                    Toast.makeText(getContext(), "Profile updated", Toast.LENGTH_SHORT).show();
+                                }));
+            } else {
+                db.collection("users").document(uid).update(updates);
+                Toast.makeText(getContext(), "Profile updated", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    // Check if image is <= 2 MB
-    private boolean isImageSizeValid(Uri uri) throws IOException {
-        InputStream inputStream = requireContext().getContentResolver().openInputStream(uri);
-        if (inputStream == null) return false;
+    // ------------------------ DRIVER CAR INFO TAB ------------------------
+    public static class TabFragmentDriverCar extends Fragment {
+        private ImageView carImageView;
+        private EditText editMake, editModel, editYear, editColor;
+        private MaterialButton btnSave;
+        private Uri selectedCarUri;
 
-        int fileSizeInBytes = inputStream.available();
-        inputStream.close();
+        private FirebaseAuth auth;
+        private FirebaseFirestore db;
+        private StorageReference storageRef;
 
-        float fileSizeInMB = fileSizeInBytes / (1024f * 1024f);
-        return fileSizeInMB <= 2f;
-    }
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater,
+                                 @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
 
-    // Compress image to under 2 MB
-    private Uri compressImage(Uri uri) throws IOException {
-        Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), uri);
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        int quality = 100;
-        bitmap.compress(Bitmap.CompressFormat.JPEG, quality, out);
+            View view = inflater.inflate(R.layout.tab_driver_car, container, false);
 
-        while (out.toByteArray().length / (1024f * 1024f) > 2f && quality > 10) {
-            out.reset();
-            quality -= 5;
-            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, out);
+            carImageView = view.findViewById(R.id.carImageView);
+            editMake = view.findViewById(R.id.editCarMake);
+            editModel = view.findViewById(R.id.editCarModel);
+            editYear = view.findViewById(R.id.editCarYear);
+            editColor = view.findViewById(R.id.editCarColor);
+            btnSave = view.findViewById(R.id.btnSaveCar);
+
+            auth = FirebaseAuth.getInstance();
+            db = FirebaseFirestore.getInstance();
+            storageRef = FirebaseStorage.getInstance().getReference("car_photos");
+
+            loadCarInfo();
+
+            carImageView.setOnClickListener(v -> openCarPicker());
+            btnSave.setOnClickListener(v -> saveCarInfo());
+
+            return view;
         }
 
-        String path = MediaStore.Images.Media.insertImage(requireContext().getContentResolver(), bitmap, "compressed_image", null);
-        return Uri.parse(path);
-    }
-
-    private void saveProfile() {
-        String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-        String name = editName.getText().toString().trim();
-        String location = editLocation.getText().toString().trim();
-        String specialization = spinnerSpecialization.getSelectedItem().toString();
-
-        if (name.isEmpty() || location.isEmpty()) {
-            Toast.makeText(getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
-            return;
+        private void loadCarInfo() {
+            String uid = auth.getCurrentUser().getUid();
+            db.collection("drivers").document(uid)
+                    .get()
+                    .addOnSuccessListener(doc -> {
+                        if (doc.exists()) {
+                            editMake.setText(doc.getString("make"));
+                            editModel.setText(doc.getString("model"));
+                            editYear.setText(doc.getString("year"));
+                            editColor.setText(doc.getString("color"));
+                            String url = doc.getString("carImage");
+                            if (url != null) Glide.with(this).load(url).into(carImageView);
+                        }
+                    });
         }
 
-        Map<String, Object> updates = new HashMap<>();
-        updates.put("name", name);
-        updates.put("location", location);
-        updates.put("specialization", specialization);
+        private void openCarPicker() {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        }
 
-        if (selectedImageUri != null) {
-            StorageReference fileRef = storageRef.child(uid + ".jpg");
-            fileRef.putFile(selectedImageUri)
-                    .addOnSuccessListener(taskSnapshot -> fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                        updates.put("profileImage", uri.toString());
-                        saveToFirestore(uid, updates);
-                    }))
-                    .addOnFailureListener(e -> Toast.makeText(getContext(), "Image upload failed", Toast.LENGTH_SHORT).show());
-        } else {
-            saveToFirestore(uid, updates);
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
+                selectedCarUri = data.getData();
+                Glide.with(this).load(selectedCarUri).into(carImageView);
+            }
+        }
+
+        private void saveCarInfo() {
+            String uid = auth.getCurrentUser().getUid();
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("make", editMake.getText().toString());
+            updates.put("model", editModel.getText().toString());
+            updates.put("year", editYear.getText().toString());
+            updates.put("color", editColor.getText().toString());
+
+            if (selectedCarUri != null) {
+                StorageReference fileRef = storageRef.child(uid + ".jpg");
+                fileRef.putFile(selectedCarUri)
+                        .addOnSuccessListener(task -> fileRef.getDownloadUrl()
+                                .addOnSuccessListener(uri -> {
+                                    updates.put("carImage", uri.toString());
+                                    db.collection("drivers").document(uid).update(updates);
+                                    Toast.makeText(getContext(), "Car info updated", Toast.LENGTH_SHORT).show();
+                                }));
+            } else {
+                db.collection("drivers").document(uid).update(updates);
+                Toast.makeText(getContext(), "Car info updated", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
-    private void saveToFirestore(String uid, Map<String, Object> updates) {
-        db.collection("mechanics").document(uid)
-                .update(updates)
-                .addOnSuccessListener(unused -> Toast.makeText(getContext(), "Profile updated", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(getContext(), "Error updating profile", Toast.LENGTH_SHORT).show());
-    }
+    // ------------------------ MECHANIC CREDENTIALS TAB ------------------------
+    public static class TabFragmentMechanicCredentials extends Fragment {
+        private ImageView certificateImage;
+        private EditText editSpecialization;
+        private MaterialButton btnSave;
+        private Uri selectedCertUri;
 
-    private void fetchCurrentLocation() {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(),
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
-            return;
+        private FirebaseAuth auth;
+        private FirebaseFirestore db;
+        private StorageReference storageRef;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater,
+                                 @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+
+            View view = inflater.inflate(R.layout.tab_mechanic_credentials, container, false);
+
+            certificateImage = view.findViewById(R.id.certificateImage);
+            editSpecialization = view.findViewById(R.id.editSpecialization);
+            btnSave = view.findViewById(R.id.btnSaveCredentials);
+
+            auth = FirebaseAuth.getInstance();
+            db = FirebaseFirestore.getInstance();
+            storageRef = FirebaseStorage.getInstance().getReference("certificates");
+
+            loadCredentials();
+
+            certificateImage.setOnClickListener(v -> openCertPicker());
+            btnSave.setOnClickListener(v -> saveCredentials());
+
+            return view;
         }
 
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(location -> {
-                    if (location != null) {
-                        String loc = "Lat: " + location.getLatitude() + ", Lng: " + location.getLongitude();
-                        editLocation.setText(loc);
-                    } else {
-                        Toast.makeText(getContext(), "Could not fetch location", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        private void loadCredentials() {
+            String uid = auth.getCurrentUser().getUid();
+            db.collection("mechanics").document(uid)
+                    .get()
+                    .addOnSuccessListener(doc -> {
+                        if (doc.exists()) {
+                            editSpecialization.setText(doc.getString("specialization"));
+                            String url = doc.getString("certificate");
+                            if (url != null) Glide.with(this).load(url).into(certificateImage);
+                        }
+                    });
+        }
+
+        private void openCertPicker() {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        }
+
+        @Override
+        public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+            super.onActivityResult(requestCode, resultCode, data);
+            if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
+                selectedCertUri = data.getData();
+                Glide.with(this).load(selectedCertUri).into(certificateImage);
+            }
+        }
+
+        private void saveCredentials() {
+            String uid = auth.getCurrentUser().getUid();
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("specialization", editSpecialization.getText().toString());
+
+            if (selectedCertUri != null) {
+                StorageReference fileRef = storageRef.child(uid + ".jpg");
+                fileRef.putFile(selectedCertUri)
+                        .addOnSuccessListener(task -> fileRef.getDownloadUrl()
+                                .addOnSuccessListener(uri -> {
+                                    updates.put("certificate", uri.toString());
+                                    db.collection("mechanics").document(uid).update(updates);
+                                    Toast.makeText(getContext(), "Credentials updated", Toast.LENGTH_SHORT).show();
+                                }));
+            } else {
+                db.collection("mechanics").document(uid).update(updates);
+                Toast.makeText(getContext(), "Credentials updated", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    // ------------------------ MECHANIC AVAILABILITY TAB ------------------------
+    public static class TabFragmentMechanicAvailability extends Fragment {
+        private Switch switchAvailability;
+        private EditText editArea, editHours;
+        private MaterialButton btnSave;
+
+        private FirebaseAuth auth;
+        private FirebaseFirestore db;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater,
+                                 @Nullable ViewGroup container,
+                                 @Nullable Bundle savedInstanceState) {
+
+            View view = inflater.inflate(R.layout.tab_mechanic_availability, container, false);
+
+            switchAvailability = view.findViewById(R.id.switchAvailability);
+            editArea = view.findViewById(R.id.editArea);
+            editHours = view.findViewById(R.id.editHours);
+            btnSave = view.findViewById(R.id.btnSaveAvailability);
+
+            auth = FirebaseAuth.getInstance();
+            db = FirebaseFirestore.getInstance();
+
+            loadAvailability();
+
+            btnSave.setOnClickListener(v -> saveAvailability());
+
+            return view;
+        }
+
+        private void loadAvailability() {
+            String uid = auth.getCurrentUser().getUid();
+            db.collection("mechanics").document(uid)
+                    .get()
+                    .addOnSuccessListener(doc -> {
+                        if (doc.exists()) {
+                            switchAvailability.setChecked(Boolean.TRUE.equals(doc.getBoolean("available")));
+                            editArea.setText(doc.getString("area"));
+                            editHours.setText(doc.getString("hours"));
+                        }
+                    });
+        }
+
+        private void saveAvailability() {
+            String uid = auth.getCurrentUser().getUid();
+            Map<String, Object> updates = new HashMap<>();
+            updates.put("available", switchAvailability.isChecked());
+            updates.put("area", editArea.getText().toString());
+            updates.put("hours", editHours.getText().toString());
+
+            db.collection("mechanics").document(uid).update(updates);
+            Toast.makeText(getContext(), "Availability updated", Toast.LENGTH_SHORT).show();
+        }
     }
 }
